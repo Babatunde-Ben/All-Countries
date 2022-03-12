@@ -2,4 +2,11 @@
 * set the countries-div to overflow: scroll
 * set preloader while fetching the countries
 * on clicking "see more details", redirect to another page
-* 
+* remove the scrollbar on the filter botton
+
+
+
+// Javascript todo
+
+* add "active" class on clicking the filter button
+* create a function that accepts url and title message as parameters
