@@ -1,0 +1,5 @@
+* change background color on hovering each country
+* set the countries-div to overflow: scroll
+* set preloader while fetching the countries
+* on clicking "see more details", redirect to another page
+* 
