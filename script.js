@@ -23,21 +23,16 @@ option.forEach((item) => {
       generateCountries(url, "list of all countries");
     } else {
       console.log(`${e.target.textContent} is selected`);
-
       selectedInput.value = e.target.textContent;
       region = e.target.textContent;
       url = `https://restcountries.com/v2/region/${region}`;
+      titleMessage = `list of countries in ${region}`;
 
       byRegion(url, region, titleMessage);
     }
   });
 });
 
-// title.addEventListener("click", () => {
-//   console.log(`title has been clicked`);
-//   // url = "https://restcountries.com/v2/all";
-//   byRegion(url, "americas", "clicker");
-// });
 window.addEventListener("DOMContentLoaded", () => {
   url = "https://restcountries.com/v2/all";
   generateCountries(url, "list of all countries");
@@ -49,7 +44,6 @@ function byRegion(url, region, titleMessage) {
     .then((data) => {
       console.log(`search by ${region}`);
       const countryNameArray = data.map((item) => {
-        // console.log(item.name);
         return `<div class="country">
         <p>${item.name}</p>
         <a href="#">see more details</a>
@@ -59,7 +53,6 @@ function byRegion(url, region, titleMessage) {
     })
     .catch((err) => {
       console.log(err);
-      console.log(err.message);
     });
 
   title.innerHTML = titleMessage;
@@ -80,7 +73,6 @@ function generateCountries(url, titleMessage) {
     })
     .catch((err) => {
       console.log(err);
-      console.log(err.message);
     });
 
   title.innerHTML = titleMessage;
