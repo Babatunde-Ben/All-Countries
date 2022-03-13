@@ -7,36 +7,49 @@ const title = document.querySelector(".title");
 const options = document.querySelectorAll(".options");
 const option = document.querySelectorAll(".options .option");
 const dropdown = document.querySelector(".dropdown");
+const selectedInput = document.querySelector(".selected-dropdown");
 
 // initiate dropdown menu
 dropdown.addEventListener("click", () => {
-  console.log("dropdown selected");
   dropdown.classList.toggle("active");
 });
 
-option.forEach((option) => {
-  option.addEventListener("click", (e) => {
-    console.log(e.target.textContent);
+option.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    if (e.target.textContent == "All") {
+      console.log(`all is selected`);
+      selectedInput.value = null;
+      url = "https://restcountries.com/v2/all";
+      generateCountries(url, "list of all countries");
+    } else {
+      console.log(`${e.target.textContent} is selected`);
+
+      selectedInput.value = e.target.textContent;
+      region = e.target.textContent;
+      url = `https://restcountries.com/v2/region/${region}`;
+
+      byRegion(url, region, titleMessage);
+    }
   });
 });
 
-title.addEventListener("click", () => {
-  console.log(`title has been clicked`);
-  url = "https://restcountries.com/v2/all";
-  byRegion(url, "america", "clicker");
-});
+// title.addEventListener("click", () => {
+//   console.log(`title has been clicked`);
+//   // url = "https://restcountries.com/v2/all";
+//   byRegion(url, "americas", "clicker");
+// });
 window.addEventListener("DOMContentLoaded", () => {
   url = "https://restcountries.com/v2/all";
   generateCountries(url, "list of all countries");
 });
 
 function byRegion(url, region, titleMessage) {
-  url = `https://restcountries.com/v2/region/${region}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      console.log(`search by ${region}`);
       const countryNameArray = data.map((item) => {
+        // console.log(item.name);
         return `<div class="country">
         <p>${item.name}</p>
         <a href="#">see more details</a>
@@ -57,6 +70,7 @@ function generateCountries(url, titleMessage) {
     .then((res) => res.json())
     .then((data) => {
       const countryNameArray = data.map((item) => {
+        // console.log(item.region);
         return `<div class="country">
         <p>${item.name}</p>
         <a href="#">see more details</a>
