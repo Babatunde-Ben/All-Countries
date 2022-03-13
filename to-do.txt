@@ -10,3 +10,6 @@
 
 * add "active" class on clicking the filter button
 * create a function that accepts url and title message as parameters
+
+* Regions :
+Asia, Africa, North America, South America, Antarctica, Europe, and Australia
