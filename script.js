@@ -22,7 +22,6 @@ option.forEach((item) => {
       url = "https://restcountries.com/v2/all";
       generateCountries(url, "list of all countries");
     } else {
-      console.log(`${e.target.textContent} is selected`);
       selectedInput.value = e.target.textContent;
       region = e.target.textContent;
       url = `https://restcountries.com/v2/region/${region}`;
@@ -42,7 +41,6 @@ function byRegion(url, region, titleMessage) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(`search by ${region}`);
       const countryNameArray = data.map((item) => {
         return `<div class="country">
         <p>${item.name}</p>

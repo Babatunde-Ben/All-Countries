@@ -40,6 +40,7 @@ main {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  min-height: 400px;
   max-height: 600px;
   overflow: scroll;
 }
@@ -81,8 +82,11 @@ main {
   cursor: pointer;
   border: 3px solid var(--color3);
 }
+
 .dropdown .dropdown-main-box {
   padding: 0px 8px;
+  /* background-color: rgb(108, 134, 101); */
+  width: 100%;
   height: 100%;
 }
 .dropdown:hover {
@@ -90,6 +94,7 @@ main {
 }
 .dropdown-main-box i {
   color: var(--color3);
+  line-height: 30px;
 }
 .dropdown input {
   margin-left: 5px;
@@ -114,7 +119,7 @@ main {
 }
 
 .options .option {
-  padding: 5px 5px;
+  padding: 5px 10px;
   color: var(--color2);
   width: 100%;
 }
