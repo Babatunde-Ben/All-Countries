@@ -146,7 +146,7 @@ main {
   align-items: center;
   border-top: 2px solid rgb(184, 184, 184);
   position: relative;
-  padding: 15px 0;
+  padding: 15px;
 }
 .section-2 .country::before {
   content: "";
@@ -154,7 +154,7 @@ main {
   width: 5px;
   height: 5px;
   border: 2px solid var(--color2);
-  left: -20px;
+  left: -10px;
   transform: rotate(-45deg);
   border-top: none;
   border-left: none;

@@ -1,4 +1,7 @@
-console.log("check");
+// Initialize anmation on scroll library
+
+AOS.init();
+
 let url;
 let titleMessage;
 let region;
@@ -8,6 +11,9 @@ const options = document.querySelectorAll(".options");
 const option = document.querySelectorAll(".options .option");
 const dropdown = document.querySelector(".dropdown");
 const selectedInput = document.querySelector(".selected-dropdown");
+const searchBoxInput = document.querySelector(".search-box input");
+console.log(searchBoxInput);
+console.log("name");
 
 // initiate dropdown menu
 dropdown.addEventListener("click", () => {
@@ -42,7 +48,7 @@ function byRegion(url, region, titleMessage) {
     .then((res) => res.json())
     .then((data) => {
       const countryNameArray = data.map((item) => {
-        return `<div class="country">
+        return `<div class="country" data-aos="zoom-out">
         <p>${item.name}</p>
         <a href="#">see more details</a>
       </div>`;
@@ -62,7 +68,7 @@ function generateCountries(url, titleMessage) {
     .then((data) => {
       const countryNameArray = data.map((item) => {
         // console.log(item.region);
-        return `<div class="country">
+        return `<div class="country" data-aos="zoom-out">
         <p>${item.name}</p>
         <a href="#">see more details</a>
       </div>`;
