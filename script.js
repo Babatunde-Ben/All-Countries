@@ -1,7 +1,3 @@
-// Initialize anmation on scroll library
-
-AOS.init();
-
 let url;
 let titleMessage;
 let region;
