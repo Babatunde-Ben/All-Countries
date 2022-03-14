@@ -8,7 +8,6 @@ const option = document.querySelectorAll(".options .option");
 const dropdown = document.querySelector(".dropdown");
 const selectedInput = document.querySelector(".selected-dropdown");
 const searchBoxInput = document.querySelector(".search-box input");
-console.log(searchBoxInput);
 
 // functionality for searching countries
 searchBoxInput.addEventListener("keyup", () => {
@@ -18,18 +17,16 @@ searchBoxInput.addEventListener("keyup", () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.status + " this is the status");
-      console.log(data);
-      if (data.status == "404") {
-        console.log("no result found");
-      } else {
+      if (data.status != "404") {
         const countryNameArray = data.map((item) => {
           return `<div class="country">
-         <p>${item.name}</p>
-         <a href="#">see more details</a>
-       </div>`;
+       <p>${item.name}</p>
+       <a href="#">see more details</a>
+     </div>`;
         });
         mainContainer.innerHTML = countryNameArray.join("");
+      } else {
+        mainContainer.innerHTML = `<div class="error">...no results found</div>`;
       }
     })
     .catch((err) => {
