@@ -36,13 +36,6 @@ nav h1 {
 main {
   max-width: 1080px;
   margin: 0 auto;
-  background-color: var(--color1);
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  min-height: 400px;
-  max-height: 600px;
-  overflow: scroll;
 }
 .section-1 {
   display: flex;
@@ -131,9 +124,15 @@ main {
 }
 
 .section-2 {
-  padding: 10px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  min-height: 400px;
+  max-height: 600px;
+  overflow: scroll;
+  margin-bottom: 40px;
 }
-.section-2 .title {
+.title {
   color: var(--color3);
   text-align: center;
   font-size: 24px;
@@ -175,4 +174,23 @@ main {
   margin: 100px;
   font-style: italic;
   color: var(--color2);
+}
+.section-detail {
+  padding: 40px;
+  max-width: 1080px;
+  margin: 0 auto;
+  border: 2px solid var(--color2);
+  color: var(--color2);
+}
+.section-detail .country-title img {
+  width: 40px;
+  margin: 10px 0;
+}
+.section-detail div {
+  margin: 5px 0;
+}
+.section-detail .preloader {
+  width: 60px;
+  display: block;
+  margin: 130px auto;
 }

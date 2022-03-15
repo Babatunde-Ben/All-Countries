@@ -10,23 +10,32 @@ const selectedInput = document.querySelector(".selected-dropdown");
 const searchBoxInput = document.querySelector(".search-box input");
 
 // functionality for searching countries
+
+// if search input is empty
+
 searchBoxInput.addEventListener("keyup", () => {
   const value = searchBoxInput.value;
+
+  if (value.length == 0) {
+    console.log(`is empty`);
+    url = "https://restcountries.com/v2/all";
+    generateCountries(url, "list of all countries");
+  }
 
   url = `https://restcountries.com/v2/name/${value}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      if (data.status != "404") {
-        const countryNameArray = data.map((item) => {
-          return `<div class="country">
-       <p>${item.name}</p>
-       <a href="#">see more details</a>
-     </div>`;
-        });
-        mainContainer.innerHTML = countryNameArray.join("");
-      } else {
+      const countryNameArray = data.map((item) => {
+        return `<div class="country">
+    <p>${item.name}</p>
+    <a href="#">see more details</a>
+  </div>`;
+      });
+      if (data.status == "404") {
         mainContainer.innerHTML = `<div class="error">...no results found</div>`;
+      } else {
+        mainContainer.innerHTML = countryNameArray.join("");
       }
     })
     .catch((err) => {
@@ -70,7 +79,7 @@ function byRegion(url, region, titleMessage) {
       const countryNameArray = data.map((item) => {
         return `<div class="country">
         <p>${item.name}</p>
-        <a href="#">see more details</a>
+        <a href="/more_info.html?country=${item.name}">see more details</a>
       </div>`;
       });
       mainContainer.innerHTML = countryNameArray.join("");
@@ -87,10 +96,9 @@ function generateCountries(url, titleMessage) {
     .then((res) => res.json())
     .then((data) => {
       const countryNameArray = data.map((item) => {
-        // console.log(item.region);
         return `<div class="country">
-        <p>${item.name}</p>
-        <a href="#">see more details</a>
+        <p>${item.name}, </p>
+        <a href="/more_info.html?country=${item.name}">see more details</a>
       </div>`;
       });
       mainContainer.innerHTML = countryNameArray.join("");

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Countries</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav><h1>All Countries(details)</h1></nav>
+    <section class="section-detail">
+      <!-- inject details from javascript -->
+      <img src="./Eclipse-1s-200px.gif" class="preloader" alt="" />
+    </section>
+    <script>
+      let country = new URLSearchParams(window.location.search).get("country");
+      url = `https://restcountries.com/v2/name/${country}`;
+      generateCountries(url);
+      function generateCountries(url) {
+        const container = document.querySelector(".section-detail");
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            const countryNameArray = data.map((item) => {
+              let currency = item.currencies[0].code;
+              if (!currency) {
+                currency = "null";
+              }
+
+              return `<div class="country-title">
+        <h1>${item.name}</h1>
+        <img src="${item.flags.png}" alt="${item.name}" />
+      </div>
+      <div class="properties">
+        <p>Capital: <b>${item.capital} </b></p>
+      </div>
+      <div class="properties">
+        <p>Currencies: <b>${currency}(${item.currencies[0].symbol})</b></p>
+      </div>
+      <div class="properties">
+        <p>Region: <b>${item.region} </b></p>
+      </div>
+      <div class="properties">
+        <p>Calling Code: <b>${item.callingCodes} </b></p>
+      </div>
+      <div class="properties">
+        <p>Independent: <b>${item.independent} </b></p>
+      </div>`;
+            });
+            container.innerHTML = countryNameArray.join("");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    </script>
+  </body>
+</html>
